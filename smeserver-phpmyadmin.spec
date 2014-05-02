@@ -24,7 +24,7 @@ Requires: e-smith-release >= 9.0
 Obsoletes: phpmyadmin,phpMyAdmin3
 BuildRequires: e-smith-devtools >= 1.13.1-03
 Obsoletes: e-smith-phpmyadmin
-Obsoletes: smeserver-phpmyadmin <= 4.1.14
+Obsoletes: smeserver-phpmyadmin <= 3.5.2.2
 Obsoletes: smeserver-phpmyadmin-multiuser
 
 %description
