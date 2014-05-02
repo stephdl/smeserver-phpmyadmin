@@ -6,7 +6,7 @@ Summary: phpMyAdmin for SME Server
 %define name smeserver-phpmyadmin
 Name: %{name}
 %define version 4.1.14
-%define release 8
+%define release 9
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
