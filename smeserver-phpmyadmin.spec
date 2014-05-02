@@ -6,7 +6,7 @@ Summary: phpMyAdmin for SME Server
 %define name smeserver-phpmyadmin
 Name: %{name}
 %define version 4.1.14
-%define release 7
+%define release 8
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -33,7 +33,7 @@ Access with admin username/password via: https://yourdomain/phpmyadmin.
 
 %changelog
 * Sat May 2 2014 stephane de labrusse <stephdl@de-labrusse.fr> 4.1.14-7
-- Adaptation to phpMyAdmin 4.1.14 from Remi Collet
+- Adaptation to phpMyAdmin 4.1.14 for php55 from Remi Collet instead of epel(only compatible with php53)
 - Patch incorporated to be compatible with git
  
 * Sat Jun 22 2013 JP Pialasse <tests@pialasse.com> 3.5.2.2-6
