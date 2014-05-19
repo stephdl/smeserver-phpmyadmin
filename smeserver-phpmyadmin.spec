@@ -5,26 +5,23 @@
 Summary: phpMyAdmin for SME Server 
 %define name smeserver-phpmyadmin
 Name: %{name}
-%define version 4.1.14
-%define release 9
+%define version 3.5.2.2
+%define release 7
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: Mitel/addon
 Source: %{name}-%{version}.tar.gz
-#Patch0: smeserver-phpmyadmin-3.5.2.2-configext.patch
-#Patch1: smeserver-phpmyadmin-3.5.2.2-patch1.patch
-#Patch2: smeserver-phpmyadmin-4.1.14_add_AuthBasicProvider_external.patch
 URL: http://www.phpmyadmin.net/ 
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base
-Requires: phpMyAdmin >= 4.1.14
+Requires: phpMyAdmin >= 3.5.2.2
 Requires: e-smith-release >= 9.0
 Obsoletes: phpmyadmin,phpMyAdmin3
 BuildRequires: e-smith-devtools >= 1.13.1-03
 Obsoletes: e-smith-phpmyadmin
-Obsoletes: smeserver-phpmyadmin <= 3.5.2.2
+Obsoletes: smeserver-phpmyadmin <= 3.5.2.2-1
 Obsoletes: smeserver-phpmyadmin-multiuser
 
 %description
@@ -32,9 +29,8 @@ Implementation of phpMyAdmin for SME Server.
 Access with admin username/password via: https://yourdomain/phpmyadmin.
 
 %changelog
-* Sat May 2 2014 stephane de labrusse <stephdl@de-labrusse.fr> 4.1.14-7
-- Adaptation to phpMyAdmin 4.1.14 for php55 from Remi Collet instead of epel(only compatible with php53)
-- Patch incorporated to be compatible with git
+* Mon May 19 2014 stephane de labrusse <stephdl@de-labrusse.fr> 3.5.2.2-7
+-first release to sme9
  
 * Sat Jun 22 2013 JP Pialasse <tests@pialasse.com> 3.5.2.2-6
 - Obsolete multiuser [SME: 7685]
