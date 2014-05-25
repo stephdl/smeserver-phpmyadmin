@@ -6,5 +6,5 @@ for my $event (qw(
     bootstrap-console-save
     ))
 {
-    templates2events("/etc/phpMyAdmin/config.inc.php", $event)
+    templates2events("/etc/phpMyAdmin/config.inc.php", $event);
 }
