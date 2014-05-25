@@ -6,8 +6,8 @@ for my $event (qw(
     nethserver-phpmyadmin-conf
     ))
 {
-    templates2events("/etc/phpMyAdmin/config.inc.php", $event)
-    templates2events("/etc/httpd/conf.d/phpMyAdmin.conf", $event)
+    templates2events("/etc/phpMyAdmin/config.inc.php", $event);
+    templates2events("/etc/httpd/conf.d/phpMyAdmin.conf", $event);
     safe_symlink("restart", "root/etc/e-smith/events/$event/services2adjust/httpd");
 
 }
