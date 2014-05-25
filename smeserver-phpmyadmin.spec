@@ -15,9 +15,10 @@ Source: %{name}-%{version}.tar.gz
 URL: http://www.phpmyadmin.net/ 
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
-Requires: e-smith-base
+Requires: mod_authnz_external
+Requires: pwauth
 Requires: phpMyAdmin >= 3.5.2.2
-Requires: e-smith-release >= 9.0
+#Requires: e-smith-release >= 9.0
 Obsoletes: phpmyadmin,phpMyAdmin3
 BuildRequires: e-smith-devtools >= 1.13.1-03
 Obsoletes: e-smith-phpmyadmin
@@ -29,6 +30,9 @@ Implementation of phpMyAdmin for SME Server.
 Access with admin username/password via: https://yourdomain/phpmyadmin.
 
 %changelog
+* Sun May 25 2014 stephane de labrusse <stephdl@de-labrusse.fr> 3.5.2.2-7
+- first release to nethserver
+
 * Mon May 19 2014 stephane de labrusse <stephdl@de-labrusse.fr> 3.5.2.2-7
 -first release to sme9
  

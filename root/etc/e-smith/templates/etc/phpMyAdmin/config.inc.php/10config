@@ -33,7 +33,7 @@ if (("$adminaccess" eq "enabled"))
   $OUT .="{\n";
   $OUT .="\$cfg['Servers'][\$i]['auth_type'] = 'config';\n";
   $OUT .="\$cfg['Servers'][\$i]['user'] = 'root';\n";
-  open (PW, "/etc/openldap/ldap.pw")
+  open (PW, "/etc/my.pwd")
         || die "Could not read LDAP password.\n";
   my $pw = <PW>;
   chomp ($pw);

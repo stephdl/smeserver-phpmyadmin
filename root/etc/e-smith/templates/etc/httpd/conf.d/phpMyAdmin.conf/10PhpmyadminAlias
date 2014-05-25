@@ -1,5 +1,23 @@
-
 # phpmyadmin
+
+
+{
+    $haveSSL = (exists ${modSSL}{status} and ${modSSL}{status} eq "enabled") ?  'yes' : 'no';
+my $adminaccess = ($phpmyadmin{'adminaccess'} || 'enabled');
+my $multiaccess = ($phpmyadmin{'multiaccess'} || 'disabled');
+
+    if (($port eq "80") && ($haveSSL eq 'yes')  && ("$adminaccess" eq "enabled" || "$multiaccess" eq "enabled"))
+        {
+            $OUT .= "    RewriteRule ^/phpmyadmin(/.*|\$)    https://%{HTTP_HOST}/phpmyadmin\$1 [L,R]\n";
+        }
+
+
+    if (($port eq "80") && ($haveSSL eq 'yes') && ( "$multiaccess" eq "enabled"))
+        {
+            $OUT .= "    RewriteRule ^/phpmyadmin-multi(/.*|\$)    https://%{HTTP_HOST}/phpmyadmin-multi\$1 [L,R]\n";
+        }
+}
+
 {
 my $adminaccess = ($phpmyadmin{'adminaccess'} || 'enabled');
 my $multiaccess = ($phpmyadmin{'multiaccess'} || 'disabled');
@@ -45,7 +63,7 @@ $OUT .= '<Location /phpmyadmin>
 my $access = ($phpmyadmin{'access'} || 'private');
 if ("$access" eq "private")
     {
-    $OUT .= "    allow from $localAccess $externalSSLAccess";
+    $OUT .= "    allow from $localAccess";
     }
     elsif ("$access" eq "public")
     {
@@ -70,7 +88,7 @@ if ("$access" eq "private")
 my $access = ($phpmyadmin{'access'} || 'private');
 if ("$access" eq "private")
     {
-    $OUT .= "    allow from $localAccess $externalSSLAccess";
+    $OUT .= "    allow from $localAccess ";
     }
     elsif ("$access" eq "public")
     {
