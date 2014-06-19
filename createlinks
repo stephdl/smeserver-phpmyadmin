@@ -4,6 +4,7 @@ use esmith::Build::CreateLinks qw(:all);
 
 for my $event (qw(
     bootstrap-console-save
+    console-save
     ))
 {
     templates2events("/etc/phpMyAdmin/config.inc.php", $event);

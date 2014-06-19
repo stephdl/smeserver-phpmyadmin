@@ -6,7 +6,7 @@ Summary: phpMyAdmin for SME Server
 %define name smeserver-phpmyadmin
 Name: %{name}
 %define version 3.5.8.2
-%define release 1
+%define release 2
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -29,8 +29,9 @@ Implementation of phpMyAdmin for SME Server.
 Access with admin username/password via: https://yourdomain/phpmyadmin.
 
 %changelog
-* Mon May 19 2014 stephane de labrusse <stephdl@de-labrusse.fr> 3.5.8.2-1
+* Mon May 19 2014 stephane de labrusse <stephdl@de-labrusse.fr> 3.5.8.2-2
 -first release to sme9
+-added an event template on 'signal-event console-save'
  
 * Sat Jun 22 2013 JP Pialasse <tests@pialasse.com> 3.5.2.2-6
 - Obsolete multiuser [SME: 7685]
