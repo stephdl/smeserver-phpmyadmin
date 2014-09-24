@@ -1,0 +1,37 @@
+{
+    my $rec = $DB->get('phpmyadmin')
+        || $DB->new_record('phpmyadmin', {type => 'configuration'});
+    my $pw = $rec->prop('DbPassword');
+    if (not $pw or length($pw) < 57){
+        my $pw = gen_pw();
+        $rec->set_prop('DbPassword', $pw);
+    }
+    $pw = $rec->prop('AdminPassword');
+    if (not $pw or length($pw) < 57){
+        my $pw = gen_pw();
+        $rec->set_prop('AdminPassword', $pw);
+    }
+
+    sub gen_pw {
+        use MIME::Base64 qw(encode_base64);
+        my $p = "not set due to error";
+        if ( open( RANDOM, "/dev/urandom" ) ){
+            my $buf;
+            # 57 bytes is a full line of Base64 coding, and contains
+            # 456 bits of randomness - given a perfectly random /dev/random
+            if ( read( RANDOM, $buf, 57 ) != 57 ){
+                warn("Short read from /dev/random: $!");
+            }
+            else{
+                $p = encode_base64($buf);
+                chomp $p;
+            }
+            close RANDOM;
+        }
+        else{
+            warn "Could not open /dev/urandom: $!";
+        }
+        return $p;
+    }
+}
+

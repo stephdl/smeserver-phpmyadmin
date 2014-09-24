@@ -8,4 +8,15 @@ for my $event (qw(
     ))
 {
     templates2events("/etc/phpMyAdmin/config.inc.php", $event);
+    templates2events("/etc/e-smith/sql/init/phpmyadmin", $event);
 }
+
+for my $event (qw(
+   phpmyadmin-update 
+   ))
+{
+    templates2events("/etc/httpd/conf/httpd.conf", $event);
+    templates2events("/etc/phpMyAdmin/config.inc.php", $event);
+    templates2events("/etc/e-smith/sql/init/phpmyadmin", $event);
+}
+
