@@ -5,8 +5,8 @@
 Summary: phpMyAdmin for SME Server 
 %define name smeserver-phpmyadmin
 Name: %{name}
-%define version 3.5.8.2
-%define release 2
+%define version 4.0.10.1 
+%define release 1
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -16,7 +16,7 @@ URL: http://www.phpmyadmin.net/
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base
-Requires: phpMyAdmin >= 3.5.2.2
+Requires: phpMyAdmin >= 4.0.10.1
 Requires: e-smith-release >= 9.0
 Obsoletes: phpmyadmin,phpMyAdmin3
 BuildRequires: e-smith-devtools >= 1.13.1-03
@@ -29,6 +29,13 @@ Implementation of phpMyAdmin for SME Server.
 Access with admin username/password via: https://yourdomain/phpmyadmin.
 
 %changelog
+* Wed Sep 24 2014 stephane de labrusse <stephdl@de-labrusse.fr> 4.0.10.1-1.sme
+- add memory value up to 500M
+- add php upload/post up to 100M
+- add session.use_trans_sid 0
+- directory 'scripts' removed of httpd templates
+- VersionCheck is off now
+
 * Mon May 19 2014 stephane de labrusse <stephdl@de-labrusse.fr> 3.5.8.2-2
 -first release to sme9
 -added an event template on 'signal-event console-save'
