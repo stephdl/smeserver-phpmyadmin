@@ -1,9 +1,6 @@
 
 # phpmyadmin
 {
-my $status = $phpmyadmin{'status'} || 'disabled';
-
-if ($status eq 'enabled'){
 my $adminaccess = ($phpmyadmin{'adminaccess'} || 'enabled');
 my $multiaccess = ($phpmyadmin{'multiaccess'} || 'disabled');
 if (("$adminaccess" eq "enabled") || ("$multiaccess" eq "enabled"))
@@ -30,13 +27,13 @@ my $multiaccess = ($phpmyadmin{'multiaccess'} || 'disabled');
 
 my @userspma = split(",", ($phpmyadmin{UsersPma} || "") );
 
-$OUT .= "<Location /phpmyadmin>
+$OUT .= qq(<Location /phpmyadmin>
     AuthName "phpmyadmin"
     AuthType Basic
     AuthBasicProvider external
     AuthExternal pwauth
     require user admin @userspma
-</Location>" if "$adminaccess" eq "enabled";
+</Location>) if "$adminaccess" eq "enabled";
 }
 
 <Directory /usr/share/phpMyAdmin>
@@ -96,9 +93,3 @@ if ("$access" eq "private")
      Allow from None
 </Directory>
 
-}
-else {
-    $OUT .= "# phpmyadmin is disabled";
-}
-
-}
