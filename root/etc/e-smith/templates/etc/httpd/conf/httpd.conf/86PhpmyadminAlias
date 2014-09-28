@@ -45,18 +45,19 @@
     Options -Indexes
     AllowOverride None
     order deny,allow
-    deny from all);
+    deny from all
+    );
 
 
   my $access = ($phpmyadmin{'access'} || 'private');
 
     if ("$access" eq "private")
     {
-      $OUT .= "    allow from $localAccess $externalSSLAccess";
+      $OUT .= "allow from $localAccess $externalSSLAccess";
     }
     elsif ("$access" eq "public")
     {
-      $OUT .= "    allow from all";
+      $OUT .= "allow from all";
     }
 
   $OUT .= qq(
