@@ -5,8 +5,8 @@
 Summary: phpMyAdmin for SME Server 
 %define name smeserver-phpmyadmin
 Name: %{name}
-%define version 4.0.10.1 
-%define release 2
+%define version 4.0.10.2
+%define release 1
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -19,7 +19,7 @@ Requires: e-smith-base
 Requires: phpMyAdmin >= 4.0.10.1
 Requires: e-smith-release >= 9.0
 Obsoletes: phpmyadmin,phpMyAdmin3
-BuildRequires: e-smith-devtools >= 1.13.1-03
+BuildRequires: e-smith-devtools
 Obsoletes: e-smith-phpmyadmin
 Obsoletes: smeserver-phpmyadmin <= 3.5.2.2-1
 Obsoletes: smeserver-phpmyadmin-multiuser
@@ -29,6 +29,15 @@ Implementation of phpMyAdmin for SME Server.
 Access with admin username/password via: https://yourdomain/phpmyadmin.
 
 %changelog
+* Sun Sep 28 2014 stephane de labrusse <stephdl@de-labrusse.fr> 4.0.10.2-1.sme
+- added an event template on 'phpmyadmin-update'
+- added a phpmyadmin.sql db to save settings in db
+- new cool features (bookmarktable,relation,userconfig,table_info,column_info,history,
+- recent,table_uiprefs,tracking,table_coords,pdf_pages,designer_coords)
+- the http://url/setup page is now forbidden by apache
+- a db 'status' exists now to disable simply phpmyadmin in httpd.conf
+- removed the openbasedir of /tmp to /var/lib/phpMyAdmin/tmp
+ 
 * Wed Sep 24 2014 stephane de labrusse <stephdl@de-labrusse.fr> 4.0.10.1-1.sme
 - add memory value up to 500M
 - add php upload/post up to 100M
