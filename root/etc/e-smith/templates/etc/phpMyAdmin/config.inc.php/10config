@@ -6,7 +6,7 @@ $i = 0;
 /* Server localhost (config:root) [1] */
 $i++;
 $cfg['Servers'][$i]['host'] = 'localhost';
-$cfg['Servers'][$i]['extension'] = 'mysql';
+$cfg['Servers'][$i]['extension'] = 'mysqli';
 $cfg['Servers'][$i]['connect_type'] = 'tcp';
 $cfg['Servers'][$i]['compress'] = false;
 
