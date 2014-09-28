@@ -110,7 +110,7 @@ rm -f %{name}-%{version}-filelist
 echo "%doc CHANGELOG.git" >> %{name}-%{version}-%{release}-filelist
 echo "%doc phpmyadmin.sql" >> %{name}-%{version}-%{release}-filelist
 
-%files -f %{name}-%{version}-%{release}-filelist
+%files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
 
 %clean 
