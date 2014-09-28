@@ -1,4 +1,8 @@
+{
 
+my $status = $phpmyadmin{'status'} || 'disabled';
+
+if ($status eq 'enabled') {
 # phpmyadmin
 {
 my $adminaccess = ($phpmyadmin{'adminaccess'} || 'enabled');
@@ -91,4 +95,10 @@ if ("$access" eq "private")
      Deny from All
      Allow from None
 </Directory>
+}
+else {
+    $OUT .= "# phpmyadmin is disabled";
+}
+
+}
 
