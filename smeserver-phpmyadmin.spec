@@ -107,8 +107,8 @@ rm -f %{name}-%{version}-filelist
 /sbin/e-smith/genfilelist  \
     --dir /var/lib/phpMyAdmin/tmp 'attr(0770,root,www)' \
     $RPM_BUILD_ROOT > %{name}-%{version}-filelist
-echo "%doc CHANGELOG.git" >> %{name}-%{version}-%{release}-filelist
-echo "%doc phpmyadmin.sql" >> %{name}-%{version}-%{release}-filelist
+echo "%doc CHANGELOG.git" >> %{name}-%{version}-filelist
+echo "%doc phpmyadmin.sql" >> %{name}-%{version}-filelist
 
 %files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
