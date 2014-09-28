@@ -96,15 +96,21 @@ Access with admin username/password via: https://yourdomain/phpmyadmin.
 %setup
 
 %build
+%{__mkdir_p} root/var/lib/phpMyAdmin/tmp
 perl createlinks
 
 %install
 /bin/rm -rf $RPM_BUILD_ROOT
+rm -f %{name}-%{version}-filelist
 (cd root   ; /usr/bin/find . -depth -print | /bin/cpio -dump $RPM_BUILD_ROOT)
 /bin/rm -f %{name}-%{version}-filelist
-/sbin/e-smith/genfilelist $RPM_BUILD_ROOT > %{name}-%{version}-filelist
+/sbin/e-smith/genfilelist  \
+    --dir /var/lib/phpMyAdmin/tmp 'attr(0770,root,www)' \
+    $RPM_BUILD_ROOT > %{name}-%{version}-filelist
+echo "%doc CHANGELOG.git" >> %{name}-%{version}-%{release}-filelist
+echo "%doc phpmyadmin.sql" >> %{name}-%{version}-%{release}-filelist
 
-%files -f %{name}-%{version}-filelist
+%files -f %{name}-%{version}-%{release}-filelist
 %defattr(-,root,root)
 
 %clean 
