@@ -9,7 +9,7 @@
     $pw = $rec->prop('AdminPassword');
     if (not $pw or length($pw) < 57){
         my $pw = gen_pw();
-        $rec->set_prop('AdminPassword', $pw);
+        $rec->set_prop('sqladminPassword', $pw);
     }
 
     sub gen_pw {

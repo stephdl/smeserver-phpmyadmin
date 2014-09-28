@@ -25,14 +25,12 @@ if ("$multiaccess" eq "enabled")
 my $adminaccess = ($phpmyadmin{'adminaccess'} || 'enabled');
 my $multiaccess = ($phpmyadmin{'multiaccess'} || 'disabled');
 
-my @userspma = split(",", ($phpmyadmin{UsersPma} || "") );
-
 $OUT .= qq(<Location /phpmyadmin>
     AuthName "phpmyadmin"
     AuthType Basic
     AuthBasicProvider external
     AuthExternal pwauth
-    require user admin @userspma
+    require user admin
 </Location>) if "$adminaccess" eq "enabled";
 }
 

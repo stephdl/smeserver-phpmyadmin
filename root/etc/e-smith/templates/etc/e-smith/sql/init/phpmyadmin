@@ -2,7 +2,7 @@
 my $db = $phpmyadmin{'DbName'} || 'phpmyadmin';
 my $user = $phpmyadmin{'DbUser'} || 'phpmyadmin';
 my $pass = $phpmyadmin{'DbPassword'} || 'phpmyadmin';
-my $admpass = $phpmyadmin{'AdminPassword'} || 'adminpass';
+my $admpass = $phpmyadmin{'sqladminPassword'} || 'adminpass';
 
 my $dbstruct = `rpm -qd smeserver-phpmyadmin | grep phpmyadmin.sql`;
 
