@@ -18,6 +18,8 @@ for my $event (qw(
     templates2events("/etc/httpd/conf/httpd.conf", $event);
     templates2events("/etc/phpMyAdmin/config.inc.php", $event);
     templates2events("/etc/e-smith/sql/init/phpmyadmin", $event);
+    safe_symlink("restart", "root/etc/e-smith/events/$event/services2adjust/mysql.init");;
+    safe_symlink("sigusr1", "root/etc/e-smith/events/$event/services2adjust/httpd-e-smith");
 }
 # PHP header and footer
  safe_symlink("/etc/e-smith/templates-default/template-begin-php", "root/etc/e-smith/templates/etc/phpMyAdmin/config.inc.php/template-begin");
