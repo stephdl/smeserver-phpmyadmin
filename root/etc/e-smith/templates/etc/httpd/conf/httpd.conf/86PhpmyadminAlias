@@ -1,56 +1,65 @@
-
+{
 # phpmyadmin
-{
-my $adminaccess = ($phpmyadmin{'adminaccess'} || 'enabled');
-my $multiaccess = ($phpmyadmin{'multiaccess'} || 'disabled');
-if (("$adminaccess" eq "enabled") || ("$multiaccess" eq "enabled"))
+  my $status = $phpmyadmin{'status'} || 'disabled';
+ 
+    if ($status eq 'enabled') 
+  {
+    $OUT .="#-------------------------------------------------\n";
+    $OUT .="# phpMyAdmin settings from smeserver-phpmyadmin\n";
+    $OUT .="#-------------------------------------------------\n";
+    $OUT .="\n";
+ 
+  my $adminaccess = ($phpmyadmin{'adminaccess'} || 'enabled');
+  my $multiaccess = ($phpmyadmin{'multiaccess'} || 'disabled');
+    if (("$adminaccess" eq "enabled") || ("$multiaccess" eq "enabled"))
     {
-    $OUT .= "Alias /phpmyadmin /usr/share/phpMyAdmin\n";
+      $OUT .= "Alias /phpmyadmin /usr/share/phpMyAdmin\n";
     }
     else
     {
-    $OUT .= "# phpMyAdmin Admin access disabled\n";
+      $OUT .= "# phpMyAdmin Admin access disabled\n";
     }
-if ("$multiaccess" eq "enabled")
+
+    if ("$multiaccess" eq "enabled")
     {
-    $OUT .= "Alias /phpmyadmin-multi /usr/share/phpMyAdmin\n";
+      $OUT .= "Alias /phpmyadmin-multi /usr/share/phpMyAdmin\n";
     }
     else
     {
-    $OUT .= "# phpMyAdmin Multiuser access disabled\n";
+      $OUT .= "# phpMyAdmin Multiuser access disabled\n";
     }
-}
 
-{
-my $adminaccess = ($phpmyadmin{'adminaccess'} || 'enabled');
-my $multiaccess = ($phpmyadmin{'multiaccess'} || 'disabled');
 
-$OUT .= qq(<Location /phpmyadmin>
+    $OUT .= qq(
+<Location /phpmyadmin>
     AuthName "phpmyadmin"
     AuthType Basic
     AuthBasicProvider external
     AuthExternal pwauth
     require user admin
 </Location>) if "$adminaccess" eq "enabled";
-}
 
+    $OUT .= qq(
 <Directory /usr/share/phpMyAdmin>
     SSLRequireSSL
     Options -Indexes
     AllowOverride None
     order deny,allow
-    deny from all
-{
-my $access = ($phpmyadmin{'access'} || 'private');
-if ("$access" eq "private")
+    deny from all);
+
+
+  my $access = ($phpmyadmin{'access'} || 'private');
+
+    if ("$access" eq "private")
     {
-    $OUT .= "    allow from $localAccess $externalSSLAccess";
+      $OUT .= "    allow from $localAccess $externalSSLAccess";
     }
     elsif ("$access" eq "public")
     {
-    $OUT .= "    allow from all";
+      $OUT .= "    allow from all";
     }
-}
+
+  $OUT .= qq(
     Satisfy all
     AddType application/x-httpd-php .php .php3
     php_flag  magic_quotes_gpc  on
@@ -90,5 +99,12 @@ if ("$access" eq "private")
      Order Deny,Allow
      Deny from All
      Allow from None
-</Directory>
+</Directory>);
+
+  }
+    else 
+    {
+      $OUT .= "# phpmyadmin is disabled";
+    }
+}
 
