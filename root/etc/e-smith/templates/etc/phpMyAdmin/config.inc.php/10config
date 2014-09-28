@@ -1,4 +1,4 @@
-<?php
+
 
 /* Servers configuration */
 $i = 0;
@@ -102,9 +102,6 @@ $cfg['Servers'][$i]['tracking'] = 'pma_tracking';
 $cfg['Servers'][$i]['table_coords'] = 'pma_table_coords';
 $cfg['Servers'][$i]['pdf_pages'] = 'pma_pdf_pages';
 $cfg['Servers'][$i]['designer_coords'] = 'pma_designer_coords';
-$cfg['RetainQueryBox'] = true;
-$cfg['ServerDefault'] = 1;
-
 $cfg['Servers'][$i]['AllowRoot']               = TRUE;
 $cfg['Servers'][$i]['AllowDeny']['rules']      = array();
 $cfg['Servers'][$i]['AllowNoPassword']         = FALSE;

@@ -19,4 +19,6 @@ for my $event (qw(
     templates2events("/etc/phpMyAdmin/config.inc.php", $event);
     templates2events("/etc/e-smith/sql/init/phpmyadmin", $event);
 }
-
+# PHP header and footer
+ safe_symlink("/etc/e-smith/templates-default/template-begin-php", "root/etc/e-smith/templates/etc/phpMyAdmin/config.inc.php/template-begin");
+ safe_symlink("/etc/e-smith/templates-default/template-end-php", "root/etc/e-smith/templates/etc/phpMyAdmin/config.inc.php/template-end");
