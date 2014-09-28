@@ -57,7 +57,8 @@ if ("$access" eq "private")
     AddType application/x-httpd-php .php .php3
     php_flag  magic_quotes_gpc  on
     php_flag  track_vars        on
-    php_admin_value open_basedir /usr/share/php:/usr/share/phpMyAdmin:/etc/phpMyAdmin:/var/lib/phpMyAdmin:/tmp
+    php_admin_value open_basedir /usr/share/php:/usr/share/phpMyAdmin:/etc/phpMyAdmin:/var/lib/phpMyAdmin
+    php_admin_value session.save_path /var/lib/phpMyAdmin/tmp
     php_admin_value post_max_size 100M
     php_admin_value upload_max_filesize 100M
     php_admin_value memory_limit 500M
