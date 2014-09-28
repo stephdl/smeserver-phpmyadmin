@@ -7,7 +7,9 @@ $i = 0;
 $i++;
 $cfg['Servers'][$i]['host'] = 'localhost';
 $cfg['Servers'][$i]['extension'] = 'mysqli';
-$cfg['Servers'][$i]['connect_type'] = 'tcp';
+$cfg['Servers'][$i]['port'] = '';
+$cfg['Servers'][$i]['socket'] = '/var/lib/mysql/mysql.sock';
+$cfg['Servers'][$i]['connect_type'] = 'socket';
 $cfg['Servers'][$i]['compress'] = false;
 
 # standalone or login mode
