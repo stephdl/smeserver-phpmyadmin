@@ -60,6 +60,10 @@
       $OUT .= "allow from all";
     }
 
+  my $postmaxsize   = ($phpmyadmin{'PostMaxSize'} || '100M');
+  my $uploadmaxsize = ($phpmyadmin{'UploadMaxSize'} || '100M');
+  my $memorylimit   = ($phpmyadmin{'MemoryLimit'} || '500M');
+
   $OUT .= qq(
     Satisfy all
     AddType application/x-httpd-php .php .php3
@@ -67,10 +71,11 @@
     php_flag  track_vars        on
     php_admin_value open_basedir /usr/share/php:/usr/share/phpMyAdmin:/etc/phpMyAdmin:/var/lib/phpMyAdmin
     php_admin_value session.save_path /var/lib/phpMyAdmin/tmp
-    php_admin_value post_max_size 100M
-    php_admin_value upload_max_filesize 100M
-    php_admin_value memory_limit 500M
+    php_admin_value post_max_size $postmaxsize
+    php_admin_value upload_max_filesize $uploadmaxsize
+    php_admin_value memory_limit $memorylimit
     php_admin_flag session.use_trans_sid 0
+    php_admin_value upload_tmp_dir /var/lib/phpMyAdmin/tmp
 </Directory>
 
 

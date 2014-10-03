@@ -6,7 +6,7 @@ Summary: phpMyAdmin for SME Server
 %define name smeserver-phpmyadmin
 Name: %{name}
 %define version 4.0.10.2
-%define release 1
+%define release 2
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -29,6 +29,10 @@ Implementation of phpMyAdmin for SME Server.
 Access with admin username/password via: https://yourdomain/phpmyadmin.
 
 %changelog
+* Sun Sep 28 2014 stephane de labrusse <stephdl@de-labrusse.fr> 4.0.10.2-2.sme
+- added a tmp folder other that the /tmp [SME:8577]
+- added some db values to adjust php limits (PostMaxSize,UploadMaxSize,MemoryLimit)
+
 * Sun Sep 28 2014 stephane de labrusse <stephdl@de-labrusse.fr> 4.0.10.2-1.sme
 - added an event template on 'phpmyadmin-update'
 - added a phpmyadmin.sql db to save settings in db
