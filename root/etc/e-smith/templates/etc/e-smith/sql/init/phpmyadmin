@@ -1,0 +1,51 @@
+{
+my $db = $phpmyadmin{'DbName'} || 'phpmyadmin';
+my $user = $phpmyadmin{'DbUser'} || 'phpmyadmin';
+my $pass = $phpmyadmin{'DbPassword'} || 'phpmyadmin';
+my $admpass = $phpmyadmin{'sqladminPassword'} || 'adminpass';
+
+my $dbstruct = `rpm -qd smeserver-phpmyadmin | grep phpmyadmin.sql`;
+
+$OUT .= <<"END";
+#! /bin/sh
+if [ ! -d /var/lib/mysql/$db ]; then
+        /usr/bin/mysql -e 'create database $db'
+        /usr/bin/mysql $db < $dbstruct
+fi
+
+/usr/bin/mysql <<EOF
+USE mysql;
+
+REPLACE INTO user (  
+                     host,
+                     user,
+                     password)
+            VALUES ( 
+                     'localhost',
+                     '$user',
+                     PASSWORD ('$pass'));
+
+
+REPLACE INTO db (  
+                   host,
+                   db,
+                   user,
+                   select_priv, insert_priv, update_priv, delete_priv,
+                   create_priv, alter_priv, index_priv, drop_priv, create_tmp_table_priv,
+                   grant_priv, lock_tables_priv, references_priv)
+          VALUES ( 
+                   'localhost',
+                   '$db',
+                   '$user',
+                   'Y', 'Y', 'Y', 'Y',
+                   'Y', 'Y', 'Y', 'Y', 'Y',
+                   'N', 'Y', 'Y');
+
+GRANT ALL ON *.* TO 'sqladmin'\@'localhost' IDENTIFIED BY '$admpass'
+    WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+EOF
+END
+}
+
